@@ -19,11 +19,12 @@ def get_filters():
         (str) month - name of the month to filter by, or "all" to apply no month filter
         (str) day - name of the day of week to filter by, or "all" to apply no day filter
     """
-    
+
     print('Hello! Let\'s explore some US bikeshare data!')
     # TO DO: get user input for city (chicago, new york city, washington). HINT: Use a while loop to handle invalid inputs
-    
-    
+    #Get user to select a valid city to view desciptive statistics for.
+
+
     while True:
         print('\nWhich city would you be interested in?')
         city=input('\nChicago, New York City or Washington? Please enter the city name.\n').lower()
@@ -44,15 +45,15 @@ def get_filters():
                 pic=open('Pentagon.txt','r')
                 print(pic.read())
                 pic.close()
-        if city not in CITY_DATA:    
+        if city not in CITY_DATA:
             print('Please enter a valid city,pay careful attention to spelling!!!')
             continue
         city=CITY_DATA[city]
         break
-    
+
 
     # TO DO: get user input for month (all, january, february, ... , june)
-    
+
     while True:
         month_filter_choice=input('\nDo you want to filter by month?,Please select Y/N\n').title()
         if month_filter_choice=="Y":
@@ -68,12 +69,12 @@ def get_filters():
         else:
             print('\nInput not recognised,Please enter a valid selection Y for Yes & N for No!!!\n')
             continue
-        month=month_data[month]    
+        month=month_data[month]
         break
-        
- 
+
+
     # TO DO: get user input for day of week (all, monday, tuesday, ... sunday)
-    
+
     while True:
         day_filter_choice=input('\nDo you want to filter by day? Y/N\n').title()
         if day_filter_choice=="Y":
@@ -89,9 +90,9 @@ def get_filters():
         else:
             print('\nInput not recognised,Please enter a valid selection Y for Yes & N for No!!!\n')
             continue
-        day=day_data[day]    
-        break                
-                          
+        day=day_data[day]
+        break
+
 
     print('-'*40)
     return city, month, day
@@ -108,19 +109,19 @@ def load_data(city, month, day):
     Returns:
         df - Pandas DataFrame containing city data filtered by month and day
     """
-    #Load relevant datafile 
+    #Load relevant datafile
     df=pd.read_csv(city)
     #Retrieve month, day and hour from Starttime column
     df['month']=pd.to_datetime(df['Start Time']).dt.month
     df['day']=pd.to_datetime(df['Start Time']).dt.dayofweek
     df['hour']=pd.to_datetime(df['Start Time']).dt.hour
-    
+
     #filter by month selected
     if month!='all':
         df=df[df['month']==month]
     if day!='all':
         df=df[df['day']==day]
-    
+
     return df
 
 
@@ -137,7 +138,7 @@ def time_stats(df):
         if mc_month==value:
             x=key
     print('The most common month is: {}'.format(x))
-                
+
     # TO DO: display the most common day of week
     mc_day=df['day'].value_counts().idxmax()
     #Loop to ensure that the day name is returned instead of the value from dayyes_data
@@ -149,11 +150,11 @@ def time_stats(df):
     # TO DO: display the most common start hour
     mcs_hour=df['hour'].value_counts().idxmax()
     print('The most common start hour is: {}'.format(mcs_hour))
-    
+
     #Count for hour
     hour_count=df['hour'].value_counts().max()
     print('Hour count: {}'.format(hour_count))
-    
+
 
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
@@ -168,7 +169,7 @@ def station_stats(df):
     # TO DO: display most commonly used start station
     mc_start_station=df['Start Station'].value_counts().idxmax()
     print('The most commonly used start station is: {}'.format(mc_start_station))
-    
+
     #Count for start station
     start_count=df['Start Station'].value_counts().max()
     print('Start station Count:{}'.format(start_count))
@@ -176,7 +177,7 @@ def station_stats(df):
     # TO DO: display most commonly used end station
     mc_end_station=df['End Station'].value_counts().idxmax()
     print('The most commonly used end station is :{}'.format(mc_end_station))
-    
+
     #Count for end station
     end_count=df['End Station'].value_counts().max()
     print('End station Count:{}'.format(end_count))
@@ -192,10 +193,10 @@ def station_stats(df):
 
 def trip_duration_stats(df,city):
     """Displays statistics on the total and average trip duration."""
-    
+
     print('\nCalculating Trip Duration...\n')
     start_time = time.time()
-    
+
     if city=="chicago.csv" or city=="new_york_city.csv":
     # TO DO: display total travel time
         #Sum In seconds
@@ -212,12 +213,12 @@ def trip_duration_stats(df,city):
         #Average In seconds
         avg_travel_time=df['Trip Duration'].mean()
         print('The mean travel time in seconds is: {}'.format(avg_travel_time))
-        
+
         #converting average to minutes and seconds
         min_avgtravel_time=(df['Trip Duration'].mean())/60
         x=min_avgtravel_time-(int(min_avgtravel_time))
         print('Basically the mean time is: {} minutes and {} seconds'.format(int(min_avgtravel_time),x*60))
-        
+
     #for Washington
     else:
         sum_stravel_time=df['Trip Duration'].sum()
@@ -232,7 +233,7 @@ def trip_duration_stats(df,city):
         # TO DO: display mean travel time
         avg_travel_time=df['Trip Duration'].mean()
         print('The mean travel time is: {}'.format(avg_travel_time))
-        
+
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
 
@@ -246,31 +247,31 @@ def user_stats(df):
     # TO DO: Display counts of user types
     u_types=df['User Type'].value_counts()
     print('The count of user types is: {}'.format(u_types))
-    
+
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
 
 def gender_stats(df,city):
     """Displays statistics on the gender of the users."""
-    
+
     print('\nCalculating Gender Stats...\n')
     start_time = time.time()
-   
+
     # TO DO: Display counts of gender
     #For chicago and new york city
     if city=="chicago.csv" or city=="new_york_city.csv":
         gender=df['Gender'].value_counts()
         print('There are: {}'.format(gender))
-    #For washington    
+    #For washington
     else:
         print('Sorry,No gender statistics available for Washington. -_-')
-         
+
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
-           
+
 def birth_stats(df,city):
     """Displays statistics on the birth years of users."""
-    
+
     print('\nCalculating Birth year Stats...\n')
     start_time = time.time()
     # TO DO: Display earliest, most recent, and most common year of birth
@@ -289,11 +290,11 @@ def birth_stats(df,city):
         #The earliest birth year
         early_by=birth_year.min()
         print('The earliest birth year is: {}'.format(early_by))
-        
-    #For washington    
+
+    #For washington
     else:
         print('Sorry, No birth year statistics available for Washington.-_-')
-    
+
 
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
@@ -301,14 +302,14 @@ def birth_stats(df,city):
 def raw_data(df,city):
     """Displays raw data to user if user agrees."""
     rawinput_choice=input('\nWould you like to see some of the raw data of {}, Please enter Y/N\n'.format(city)).title()
-   
+
     if rawinput_choice=="Y":
         rawinput_choice=True
         print('\nRetrieving data....\n')
         x=0
         y=5
         print(df.iloc[x:y])
-        
+
         #Loop for displaying the raw data 5 records at a time
         while True:
             rawinput_choice=input('\nDo you want to see 5 more?, Y/N\n').title()
@@ -324,9 +325,9 @@ def raw_data(df,city):
         rawinput_choice=False
     else:
         print('\nInput not recognised,Please enter a valid selection Y/N\n')
-        raw_data(df,city)    
-    
-    
+        raw_data(df,city)
+
+
 
 
 def main():
