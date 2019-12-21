@@ -1,0 +1,16 @@
+ydddddddh   `/ossso:`./osso+-   odddmmd+ /dddddddd/hdhdddddo yhhhhhhdy
+`..ymd..`  -syyyyyyysyyyyyyyyo` `..smmdmo ..+mm/-. .--/dmh:` `:dmh/--.
+   omd     oyyyyyyyyyyyyyyyyyy-    omd-dm+  -mm-       .ymh. -hms`    
+   omd     /yyyyyyyyyyyyyyyyys.    omd :mm/ -mm-         +md+dm+      
+   omm     `+syyyyyyyyyyyyyys-     omd  /mm/-mm.          :dmd-       
+   omm       -oyyyyyyyyyyys+.      omd   /mmsmm.           hmy        
+:oohmmo++`    `-+syyyyyys/.     /oodmmoo+`ommmm.        /+ommdoo+ ..  
+-+++/+++/        `-/so/-        :+++++++/  :ss/         /o+++++o/ ..  
+
+
+In the trip_duration_stats
+I assumed that the trip duration of chicago and new york was in seconds
+and that for washington it was mostly in miliseconds and i also think sometimes seconds cause some numbers are just way too long.
+
+I also struggled with the conversions of the travel times.
+If there are easier ways to convert or functions please let me know.
