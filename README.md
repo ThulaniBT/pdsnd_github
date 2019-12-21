@@ -2,7 +2,7 @@
 21-12-2019
 
 ### Project Title
-Explore-Bikeshare-Data
+Explore-Bikeshare-Data for Data Science
 
 ### Description
 In this project, I made use of Python to explore data related to bike share systems for three major cities in the United States—Chicago, New York City, and Washington. The bikshare_2.py file is set up as a script that takes in raw input to create an interactive experience in the terminal that answers questions about the dataset. Descriptive statistics is produced.
