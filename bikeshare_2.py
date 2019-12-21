@@ -30,18 +30,21 @@ def get_filters():
         city=input('\nChicago, New York City or Washington? Please enter the city name.\n').lower()
         if city=="chicago":
                 print('\nYou have selected Chicago to explore!\n')
+                #display chicago image
                 pic=open('Chicago.txt','r')
                 print(pic.read())
                 pic.close()
         if city=="new york city":
                 print('\nYou have selected New York City to explore!\n')
                 print('\nHome to the Statue of Liberty!\n')
+                #display i love new york image
                 f=open('Loveny.txt','r')
                 print(f.read())
                 f.close()
         if city=="washington":
                 print('\nYou have selected Washington to explore!\n')
                 print('\nHome to the pentagon!\n')
+                #display pentagon image
                 pic=open('Pentagon.txt','r')
                 print(pic.read())
                 pic.close()
